@@ -133,7 +133,3 @@ The actual supported form elements are:
 - Checkboxes
 
 Fell free to contribute to this library adding more supported form elements and more features.
-
-# example
-
-Example project for form_from_json package

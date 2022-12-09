@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:form_from_json_builder/form_from_json.dart';
+import 'package:form_from_json_builder/form_from_json_builder.dart';
 
 void main() {
   runApp(const MyApp());
