@@ -12,7 +12,7 @@ and the Flutter guide for
 -->
 
 Create a dynamic form starting from a Json input.
-This package is useful if your app or website contains one or more forms that you want to update (remove or add questions and sections) without doing a deploy.
+This package is useful if your app or website contains one or more form that you want to update (remove or add questions and sections) without doing a deploy.
 You will store the json representing the form in a database or file and you will input it to the FormFromJson widget: it will create dynamically your form.
 
 ## Features

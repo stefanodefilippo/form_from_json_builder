@@ -1,7 +1,1 @@
-enum FromElementType{
-
-  textField,
-  checkBox,
-  dropDown
-
-}
+enum FromElementType { textField, checkBox, dropDown }

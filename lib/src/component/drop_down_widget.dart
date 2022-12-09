@@ -6,11 +6,8 @@ import 'package:provider/provider.dart';
 import '../utils/utils.dart';
 
 class DropDownWidget extends StatefulWidget {
-  const DropDownWidget(
-      this.formDropDown,
-      this.hintStyle,
-      {Key? key}
-      ) : super(key: key);
+  const DropDownWidget(this.formDropDown, this.hintStyle, {Key? key})
+      : super(key: key);
 
   final FormDropDown formDropDown;
   final TextStyle? hintStyle;
@@ -20,7 +17,6 @@ class DropDownWidget extends StatefulWidget {
 }
 
 class _DropDownWidgetState extends State<DropDownWidget> {
-
   FormStateNotifier? formStateNotifier;
   String? selectedValue;
   bool visible = false;
@@ -33,10 +29,13 @@ class _DropDownWidgetState extends State<DropDownWidget> {
   }
 
   checkPersistence() async {
-    if(widget.formDropDown.persistValue == true && widget.formDropDown.name != null){
-      selectedValue = (await Utils.getStoredStringValue(widget.formDropDown.name!)) ?? "";
-      if(selectedValue != null){
-        formStateNotifier!.addOrUpdate(widget.formDropDown.name!, selectedValue);
+    if (widget.formDropDown.persistValue == true &&
+        widget.formDropDown.name != null) {
+      selectedValue =
+          (await Utils.getStoredStringValue(widget.formDropDown.name!)) ?? "";
+      if (selectedValue != null) {
+        formStateNotifier!
+            .addOrUpdate(widget.formDropDown.name!, selectedValue);
       }
     }
     setState(() {
@@ -48,13 +47,15 @@ class _DropDownWidgetState extends State<DropDownWidget> {
   void didChangeDependencies() {
     formStateNotifier = Provider.of<FormStateNotifier>(context, listen: true);
 
-    visible = widget.formDropDown.visible != null ?
-    Utils.parseConditionalExpression(widget.formDropDown.visible!, formStateNotifier!.formValues) :
-    true;
+    visible = widget.formDropDown.visible != null
+        ? Utils.parseConditionalExpression(
+            widget.formDropDown.visible!, formStateNotifier!.formValues)
+        : true;
 
-    if(!visible){
+    if (!visible) {
       selectedValue = null;
-      formStateNotifier!.addOrUpdateNoNotify(widget.formDropDown.name!, selectedValue);
+      formStateNotifier!
+          .addOrUpdateNoNotify(widget.formDropDown.name!, selectedValue);
     }
 
     super.didChangeDependencies();
@@ -62,36 +63,36 @@ class _DropDownWidgetState extends State<DropDownWidget> {
 
   @override
   Widget build(BuildContext context) {
-
-    return isLoading ? Container() : Visibility(
-      visible: visible,
-      child: DropdownButton(
-        value: selectedValue,
-        hint: widget.formDropDown.hint != null ? Text(
-          widget.formDropDown.hint!,
-          style: widget.hintStyle,
-        ) : Container(),
-        items: widget.formDropDown.items.map(
-                (item) {
-                  return DropdownMenuItem(
-                      value: item?.value,
-                      child: Text(item!.text)
-                  );
+    return isLoading
+        ? Container()
+        : Visibility(
+            visible: visible,
+            child: DropdownButton(
+              value: selectedValue,
+              hint: widget.formDropDown.hint != null
+                  ? Text(
+                      widget.formDropDown.hint!,
+                      style: widget.hintStyle,
+                    )
+                  : Container(),
+              items: widget.formDropDown.items.map((item) {
+                return DropdownMenuItem(
+                    value: item?.value, child: Text(item!.text));
+              }).toList(),
+              onChanged: (newValue) {
+                setState(() {
+                  selectedValue = newValue;
+                });
+                if (widget.formDropDown.name != null) {
+                  formStateNotifier!
+                      .addOrUpdate(widget.formDropDown.name!, newValue);
+                  if (widget.formDropDown.persistValue == true) {
+                    Utils.persistStringValue(
+                        widget.formDropDown.name!, newValue.toString());
+                  }
                 }
-                ).toList(),
-        onChanged: (newValue){
-          setState(() {
-            selectedValue = newValue;
-          });
-          if(widget.formDropDown.name != null){
-            formStateNotifier!.addOrUpdate(widget.formDropDown.name!, newValue);
-            if(widget.formDropDown.persistValue == true){
-              Utils.persistStringValue(widget.formDropDown.name!, newValue.toString());
-            }
-          }
-        },
-      ),
-    );
-
+              },
+            ),
+          );
   }
 }

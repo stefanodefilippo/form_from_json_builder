@@ -49,7 +49,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   GlobalKey formKey = GlobalKey<FormState>();
 
   @override
@@ -100,14 +99,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         "text": "Occupato",
                         "value": "working",
                       },
-                      {
-                        "text": "Studente",
-                        "value": "student"
-                      },
-                      {
-                        "text": "Disoccupato",
-                        "value": "notWorking"
-                      },
+                      {"text": "Studente", "value": "student"},
+                      {"text": "Disoccupato", "value": "notWorking"},
                       {
                         "text": "Attività lavorativa ridotta o sospesa",
                         "value": "suspended"
@@ -119,28 +112,32 @@ class _MyHomePageState extends State<MyHomePage> {
                     "type": "checkBox",
                     "visible": "workingState == notWorking",
                     "name": "stagional",
-                    "labelText": "Eri un lavoratore stagionale o occasionale o autonomo che ha perso il lavoro a causa dell'emergenza sanitaria?",
+                    "labelText":
+                        "Eri un lavoratore stagionale o occasionale o autonomo che ha perso il lavoro a causa dell'emergenza sanitaria?",
                     "persistValue": true,
                   },
                   {
                     "type": "checkBox",
                     "visible": "occup == notWorking",
                     "name": "voluntaryDismissal",
-                    "labelText": "Sei disoccupato a seguito di dimissioni volontarie (eccetto che nel caso di dimissioni per giusta causa)?",
+                    "labelText":
+                        "Sei disoccupato a seguito di dimissioni volontarie (eccetto che nel caso di dimissioni per giusta causa)?",
                     "persistValue": true,
                   },
                   {
                     "type": "checkBox",
                     "visible": "occup == notWorking",
                     "name": "contributionNaspi",
-                    "labelText": "Hai realizzato, nei 4 anni precedenti l’inizio del periodo di disoccupazione, almeno 13 settimane di contribuzione contro la disoccupazione?",
+                    "labelText":
+                        "Hai realizzato, nei 4 anni precedenti l’inizio del periodo di disoccupazione, almeno 13 settimane di contribuzione contro la disoccupazione?",
                     "persistValue": true,
                   },
                   {
                     "type": "checkBox",
                     "visible": "occup == suspended",
                     "name": "fundCompany",
-                    "labelText": "Alla tua azienda sono stati applicati i Fondi di solidarietà o il Fondo di integrazione salariale?",
+                    "labelText":
+                        "Alla tua azienda sono stati applicati i Fondi di solidarietà o il Fondo di integrazione salariale?",
                     "persistValue": true,
                   },
                 ]
@@ -159,23 +156,25 @@ class _MyHomePageState extends State<MyHomePage> {
                     "type": "checkBox",
                     "visible": "children > 0",
                     "name": "hasChildrenNursery",
-                    "labelText": "Hai almeno un figlio iscritto ad un asilo nido?",
+                    "labelText":
+                        "Hai almeno un figlio iscritto ad un asilo nido?",
                     "persistValue": true,
                   },
                   {
                     "type": "textField",
                     "name": "childrenRange1821",
-                    "labelText": "Numero di figli tra i 18 e i 21 anni a carico",
+                    "labelText":
+                        "Numero di figli tra i 18 e i 21 anni a carico",
                     "persistValue": true,
                     "keyboardType": "number"
                   },
                   {
                     "type": "checkBox",
                     "name": "newBorn",
-                    "labelText": "Sei in attesa di un figlio oppure ne hai avuto uno da meno di 90 giorni?",
+                    "labelText":
+                        "Sei in attesa di un figlio oppure ne hai avuto uno da meno di 90 giorni?",
                     "persistValue": true,
                   },
-
                   {
                     "type": "checkBox",
                     "name": "hasDisableSon",
@@ -199,17 +198,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     "labelText": "Sei locatore di un appartamento in affitto?",
                     "persistValue": true,
                   },
-
                   {
                     "type": "checkBox",
                     "name": "isRaiPayed",
-                    "labelText": "Sei in regola con il pagamento del canone RAI?",
+                    "labelText":
+                        "Sei in regola con il pagamento del canone RAI?",
                     "persistValue": true,
                   },
                   {
                     "type": "checkBox",
                     "name": "hasCaretaker",
-                    "labelText": "Hai a carico una persona anziana che ha assunto colf o badanti?",
+                    "labelText":
+                        "Hai a carico una persona anziana che ha assunto colf o badanti?",
                     "persistValue": true,
                   },
                 ]
@@ -223,28 +223,28 @@ class _MyHomePageState extends State<MyHomePage> {
             enabledBorder: const UnderlineInputBorder(),
           ),
           dropDownHintStyle: TextStyle(
-              color: Theme.of(context).primaryColorDark,
+            color: Theme.of(context).primaryColorDark,
           ),
           checkBoxLabelStyle: TextStyle(
-              fontSize: 17,
-              color: Theme.of(context).primaryColorDark,
+            fontSize: 17,
+            color: Theme.of(context).primaryColorDark,
           ),
           sectionTitleStyle: TextStyle(
-              color: Theme.of(context).primaryColorDark, fontSize: 20,
-              fontWeight: FontWeight.bold,
+            color: Theme.of(context).primaryColorDark,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
           ),
           sectionTitleContainerDecoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
           ),
           spaceBetweenQuestions: 10,
           submitButtonTextStyle: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
           ),
           submitButtonColor: Colors.green,
-          submitButtonShapeBorder: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(22.0)
-          ),
+          submitButtonShapeBorder:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(22.0)),
           onSubmit: (values) {
             //print(values);
           },

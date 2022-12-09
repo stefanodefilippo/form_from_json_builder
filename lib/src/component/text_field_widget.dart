@@ -6,10 +6,8 @@ import 'package:provider/provider.dart';
 import '../utils/utils.dart';
 
 class TextFieldWidget extends StatefulWidget {
-  const TextFieldWidget(
-      this.formTextField,
-      this.inputDecoration,
-      {Key? key}) : super(key: key);
+  const TextFieldWidget(this.formTextField, this.inputDecoration, {Key? key})
+      : super(key: key);
 
   final FormTextField formTextField;
   final InputDecoration? inputDecoration;
@@ -19,7 +17,6 @@ class TextFieldWidget extends StatefulWidget {
 }
 
 class _TextFieldWidgetState extends State<TextFieldWidget> {
-
   FormStateNotifier? formStateNotifier;
   bool visible = false;
   TextEditingController textEditingController = TextEditingController();
@@ -32,9 +29,12 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   }
 
   checkPersistence() async {
-    if(widget.formTextField.persistValue == true && widget.formTextField.name != null){
-      textEditingController.text = (await Utils.getStoredStringValue(widget.formTextField.name!)) ?? "";
-      formStateNotifier!.addOrUpdate(widget.formTextField.name!, textEditingController.text);
+    if (widget.formTextField.persistValue == true &&
+        widget.formTextField.name != null) {
+      textEditingController.text =
+          (await Utils.getStoredStringValue(widget.formTextField.name!)) ?? "";
+      formStateNotifier!
+          .addOrUpdate(widget.formTextField.name!, textEditingController.text);
       setState(() {
         isLoading = false;
       });
@@ -45,13 +45,15 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   void didChangeDependencies() {
     formStateNotifier = Provider.of<FormStateNotifier>(context, listen: true);
 
-    visible = widget.formTextField.visible != null ?
-    Utils.parseConditionalExpression(widget.formTextField.visible!, formStateNotifier!.formValues) :
-    true;
+    visible = widget.formTextField.visible != null
+        ? Utils.parseConditionalExpression(
+            widget.formTextField.visible!, formStateNotifier!.formValues)
+        : true;
 
-    if(!visible){
+    if (!visible) {
       textEditingController.text = "";
-      formStateNotifier!.addOrUpdateNoNotify(widget.formTextField.name!, textEditingController.text);
+      formStateNotifier!.addOrUpdateNoNotify(
+          widget.formTextField.name!, textEditingController.text);
     }
 
     super.didChangeDependencies();
@@ -59,29 +61,30 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
 
   @override
   Widget build(BuildContext context) {
-
-    return isLoading ? Container() : Visibility(
-      visible: visible,
-      child: TextFormField(
-        controller: textEditingController,
-        onChanged: (String newValue){
-          if(widget.formTextField.name != null){
-            formStateNotifier!.addOrUpdate(widget.formTextField.name!, newValue);
-            if(widget.formTextField.persistValue == true){
-              Utils.persistStringValue(widget.formTextField.name!, newValue);
-            }
-          }
-        },
-        decoration: widget.inputDecoration != null ?
-        widget.inputDecoration!.copyWith(
-            labelText: widget.formTextField.labelText
-        ) :
-        InputDecoration(
-          labelText: widget.formTextField.labelText,
-        ),
-        keyboardType: widget.formTextField.keyboardType,
-      ),
-    );
-
+    return isLoading
+        ? Container()
+        : Visibility(
+            visible: visible,
+            child: TextFormField(
+              controller: textEditingController,
+              onChanged: (String newValue) {
+                if (widget.formTextField.name != null) {
+                  formStateNotifier!
+                      .addOrUpdate(widget.formTextField.name!, newValue);
+                  if (widget.formTextField.persistValue == true) {
+                    Utils.persistStringValue(
+                        widget.formTextField.name!, newValue);
+                  }
+                }
+              },
+              decoration: widget.inputDecoration != null
+                  ? widget.inputDecoration!
+                      .copyWith(labelText: widget.formTextField.labelText)
+                  : InputDecoration(
+                      labelText: widget.formTextField.labelText,
+                    ),
+              keyboardType: widget.formTextField.keyboardType,
+            ),
+          );
   }
 }
