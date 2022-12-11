@@ -32,7 +32,7 @@ class _DropDownWidgetState extends State<DropDownWidget> {
     if (widget.formDropDown.persistValue == true &&
         widget.formDropDown.name != null) {
       selectedValue =
-          (await Utils.getStoredStringValue(widget.formDropDown.name!)) ?? "";
+          (await Utils.getStoredStringValue(widget.formDropDown.name!));
       if (selectedValue != null) {
         formStateNotifier!
             .addOrUpdate(widget.formDropDown.name!, selectedValue);

@@ -118,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   {
                     "type": "checkBox",
-                    "visible": "occup == notWorking",
+                    "visible": "workingState == notWorking",
                     "name": "voluntaryDismissal",
                     "labelText":
                         "Sei disoccupato a seguito di dimissioni volontarie (eccetto che nel caso di dimissioni per giusta causa)?",
@@ -126,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   {
                     "type": "checkBox",
-                    "visible": "occup == notWorking",
+                    "visible": "workingState == notWorking",
                     "name": "contributionNaspi",
                     "labelText":
                         "Hai realizzato, nei 4 anni precedenti l’inizio del periodo di disoccupazione, almeno 13 settimane di contribuzione contro la disoccupazione?",
@@ -134,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   {
                     "type": "checkBox",
-                    "visible": "occup == suspended",
+                    "visible": "workingState == suspended",
                     "name": "fundCompany",
                     "labelText":
                         "Alla tua azienda sono stati applicati i Fondi di solidarietà o il Fondo di integrazione salariale?",

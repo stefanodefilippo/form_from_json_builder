@@ -1,6 +1,6 @@
 name: form_from_json_builder
 description: Flutter package to create a form from from a json input. Useful if your app or website contains one or more form that you want to update without a deploy.
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/stefanodefilippo/form_from_json_builder
 
 environment:
